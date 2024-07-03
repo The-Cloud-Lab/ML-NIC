@@ -1,0 +1,12 @@
+{
+    "tables": {
+        "ingress::ipv4_tbl": {
+            "default_rule": {
+                "action": {
+                    "type": "ingress::ipv4_forward"
+                },
+                "name": "default"
+            }
+        }
+    }
+}

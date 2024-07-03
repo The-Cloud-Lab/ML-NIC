@@ -1,0 +1,14 @@
+This provides a brief overview of how to use the code files in this directory to build out the training and test sets and the decision tree. Please NOTE THE FOLLOWING: the flow information provided by the authors of the CICIDS 2017 dataset is not correct. You'll need to calculate that flow information with one of the scripts I have. Once you've have the pcap files from the authors run the following scripts in this order:
+- divide_pcap.py: divides packets based on attack (for more info, google unb ca CICIDS 2017)
+- find_flows.py: calculate flows for each pcap created by divide_pcap.py
+- train_test_split.py: run train test split on flows based on baseline authors description)
+- build_X.py {X can be bruteForce, wedBenign, thurBenign, portScan, slowLoris, slowHttp, goldenEye, hulk}: extract the train and test packets
+	- for optimal use of time, run wedBening and thurBenign in parallel, since they take the longest time to complete
+	- the order of the remaning files doesn't matter
+
+- build_DT.py: build the decision tree
+- build_Y.py {Y can be MC or P4, the order doesn't matter}: build the model(s) to be loaded onto the Netronome
+
+At this point, you should have everything you need to build and test out the micro-C and P4 models on the Netronome.
+
+I also made a script called verify_write.py that you can use to make sure all the packets you've written to Xtest.pcap nand Xtest.csv match up. (I've encountered cases where they did not match up, but that was because of bugs which I think I have resolved).
