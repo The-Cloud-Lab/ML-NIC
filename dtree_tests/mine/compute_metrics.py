@@ -9,13 +9,13 @@ groundTruth = []
 preds = []
 
 # Fill in prediction list
-predFile = open(f"/home/admin1/dtree_tests/{dirt}/{model}_pred.txt", 'r')
+predFile = open(f"../dtree_tests/{dirt}/{model}_pred.txt", 'r')
 for pred in predFile.readlines():
     preds.append(int(pred))
 
 
 # Fill in groundTruth list
-gtFile = open(f"/home/admin1/dtree_tests/{dirt}/trueLabels.txt", 'r')
+gtFile = open(f"../dtree_tests/{dirt}/trueLabels.txt", 'r')
 for gt in gtFile.readlines():
     groundTruth.append(int(gt))
 
@@ -29,7 +29,7 @@ time_decode = 9444.826
 time_encode = 1164.088
 
 latencies = []
-latFile = open(f"/home/admin1/dtree_tests/{dirt}/{model}_lat{util}.txt", 'r')
+latFile = open(f"../dtree_tests/{dirt}/{model}_lat{util}.txt", 'r')
 for lat in latFile.readlines():
 
     if  (model == "cpu"):
