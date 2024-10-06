@@ -37,7 +37,7 @@ for i in range(367):
 with open("../dtree_tests/statlog/trueLabels.txt", "w") as test_file:  # ground truth labels for test set
     print(f"Test Len: {testLen}")
 
-    ethHdr = Ether(dst="00:15:4d:13:79:ac", src="08:c0:eb:a6:de:3d", type=0x4d49)
+    ethHdr = Ether(dst="<dst_mac>", src="<src_mac>", type=0x4d49)
     ipHdr = IP(src="10.0.0.1", dst="10.0.0.2")
     udpHdr = UDP(dport=5005, sport=5005)
 
@@ -61,7 +61,7 @@ with open("../dtree_tests/statlog/trueLabels.txt", "w") as test_file:  # ground 
         print("{}".format(test_labels[testIndex]), file=test_file)
       
 ### Test set packets for CPU models ###
-ethHdr = Ether(dst="00:15:4d:13:79:ac", src="08:c0:eb:a6:de:3d", type=0x0800)
+ethHdr = Ether(dst="<dst_mac>", src="<src_mac>", type=0x0800)
 ipHdr = IP(src="10.0.0.1", dst="10.0.0.2")
 udpHdr = UDP(dport=5005, sport=5005)
 
