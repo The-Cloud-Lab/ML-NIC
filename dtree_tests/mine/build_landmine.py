@@ -100,7 +100,7 @@ with open("/home/admin1/netronome_tests/land_mine/trueLabels.txt", "w") as test_
         i += 1
 
 
-### Best test set packets for CPU models ###
+### Build test set packets for CPU models ###
 ethHdr = Ether(dst="00:15:4d:13:79:ac", src="08:c0:eb:a6:de:3d", type=0x0800)
 ipHdr = IP(src="10.0.0.1", dst="10.0.0.2")
 udpHdr = UDP(dport=5005, sport=5005)
