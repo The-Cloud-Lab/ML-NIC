@@ -27,13 +27,13 @@ void eff_handler(u_char *args, const struct pcap_pkthdr *header, const u_char *p
 void lat_handler(u_char *args, const struct pcap_pkthdr *header, const u_char *packet);
 
 int main(int argc, char **argv) {
-        char *device = "enp2s0f1np1";
-        char *pcap_file = "/home/admin1/dtree_tests/statlog/cpuTest.pcap";
+        char *device = "<interface>";
+        char *pcap_file = ".../dtree_tests/statlog/cpuTest.pcap";
         char error[PCAP_ERRBUF_SIZE];
         pcap_t *pcap_handle, *network_handle;
         // Variables for packet filtering
         struct bpf_program filter;
-        char filter_exp[] = "ether src 00:15:4d:13:79:ac && ether dst 08:c0:eb:a6:de:3d && src host 10.0.0.2 && dst host 10.0.0.1 && udp && src port 5005 && dst port 5005";
+        char filter_exp[] = "ether src <src_mac> && ether dst <dst_mac> && src host 10.0.0.2 && dst host 10.0.0.1 && udp && src port 5005 && dst port 5005";
         bpf_u_int32 subnet_mask, ip;
 
         // Get device info for packet filtering
@@ -91,14 +91,14 @@ int main(int argc, char **argv) {
         }
 
         // Open file to store model predictions
-        pred_file = fopen("/home/admin1/dtree_tests/statlog/cpu_pred_test.txt", "w");
+        pred_file = fopen(".../dtree_tests/statlog/cpu_pred_test.txt", "w");
         if (pred_file == NULL) {
                 printf("There's a problem with opening the prediction text file\n");
                 return -1;
         }
 
         // Open file to store model prediction latencies
-        latency_file = fopen("/home/admin1/dtree_tests/statlog/cpu_latN99.txt", "w");
+        latency_file = fopen(".../dtree_tests/statlog/cpu_latN99.txt", "w");
         if (latency_file == NULL) {
                 printf("There's a problem with opening the latency text file\n");
                 return -1;
