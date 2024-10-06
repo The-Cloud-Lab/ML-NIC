@@ -27,13 +27,13 @@ void eff_handler(u_char *args, const struct pcap_pkthdr *header, const u_char *p
 void lat_handler(u_char *args, const struct pcap_pkthdr *header, const u_char *packet);
 
 int main(int argc, char **argv) {
-        char *device = "";
+        char *device = "<interface>";
         char *pcap_file = "../dtree_tests/statlog/nicTest.pcap";
         char error[PCAP_ERRBUF_SIZE];
         pcap_t *pcap_handle, *network_handle;
         // Variables for packet filtering
         struct bpf_program filter;
-        char filter_exp[] = "ether src 00:15:4d:13:79:ac && ether dst 08:c0:eb:a6:de:3d && ether proto 0x4d4f";
+        char filter_exp[] = "ether src <src_mac> && ether dst <dst_mac> && ether proto 0x4d4f";
         bpf_u_int32 subnet_mask, ip;
 
         // Get device info for packet filtering
