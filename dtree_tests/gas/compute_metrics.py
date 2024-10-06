@@ -3,18 +3,20 @@ import numpy as np
 from sklearn.metrics import precision_score, accuracy_score, f1_score, recall_score
 
 dirt = "gas"
-model = "p4"
+model = "mC"
+util = "N99"
 groundTruth = []
 preds = []
 
+
 # Fill in prediction list
-predFile = open(f"/home/admin1/netronome_tests/{dirt}/{model}_pred.txt", 'r')
+predFile = open(f"../dtree_tests/{dirt}/{model}_pred.txt", 'r')
 for pred in predFile.readlines():
     preds.append(int(pred))
 
 
 # Fill in groundTruth list
-gtFile = open(f"/home/admin1/netronome_tests/{dirt}/trueLabels.txt", 'r')
+gtFile = open(f"../dtree_tests/{dirt}/trueLabels.txt", 'r')
 for gt in gtFile.readlines():
     groundTruth.append(int(gt))
 
@@ -24,16 +26,15 @@ print(f"Precision Score (Macro): {precision_score(groundTruth, preds, average='m
 print(f"Recall Score (Macro): {recall_score(groundTruth, preds, average='macro')}")
 
 
-time_decode = 9338.713 
-time_encode = 687.725
+time_decode = 9508.506
+time_encode = 1212.492
 latencies = []
-latFile = open(f"/home/admin1/netronome_tests/{dirt}/{model}_lat.txt", 'r')
+latFile = open(f"../dtree_tests/{dirt}/{model}_lat{util}.txt", 'r')
 for lat in latFile.readlines():
     if (model == "cpu"):
         latencies.append(float(lat) - time_decode - time_encode)
     else:
         latencies.append(float(lat))
-
 
 perc_50, perc_99, perc_99_9 = np.percentile(latencies, [50, 99, 99.9])
 
