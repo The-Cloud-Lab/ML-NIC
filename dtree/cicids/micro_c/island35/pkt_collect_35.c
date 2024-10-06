@@ -103,7 +103,7 @@ __intrinsic void proc_pkt(__mem40 char *buf_addr, __gpr uint32_t buf_off) {
     // Check if ethernet header is correct
     if (((__gpr uint16_t *)&eh.eth.dst)[0] == 0x0015
         && ((__gpr uint16_t *)&eh.eth.dst)[1] == 0x4d13
-        && ((__gpr uint16_t *)&eh.eth.dst)[2] == 0x79ab
+        && ((__gpr uint16_t *)&eh.eth.dst)[2] == 0x79ac
         && net_eth_is_uc_addr(&eh.eth.src) 
         && eh.eth.type == 0x4d49) {
         
