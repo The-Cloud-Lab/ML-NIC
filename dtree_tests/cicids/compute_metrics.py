@@ -3,18 +3,19 @@ import numpy as np
 from sklearn.metrics import precision_score, accuracy_score, f1_score, recall_score
 
 dirt = "cicids"
-model = "cpu"
+model = "mC"
+util = ""
 groundTruth = []
 preds = []
 
 # Fill in prediction list
-predFile = open(f"/home/admin1/netronome_tests/{dirt}/{model}_pred.txt", 'r')
+predFile = open(f"../dtree_tests/{dirt}/{model}_pred.txt", 'r')
 for pred in predFile.readlines():
     preds.append(int(pred))
 
 
 # Fill in groundTruth list
-gtFile = open(f"/home/admin1/netronome_tests/{dirt}/trueLabels.txt", 'r')
+gtFile = open(f"../dtree_tests/{dirt}/trueLabels.txt", 'r')
 for gt in gtFile.readlines():
     if (gt == 'benign\n'):
         groundTruth.append(0)
@@ -36,11 +37,10 @@ print(f"F1 Score (Macro): {f1_score(groundTruth, preds, average='macro')}")
 print(f"Precision Score (Macro): {precision_score(groundTruth, preds, average='macro')}")
 print(f"Recall Score (Macro): {recall_score(groundTruth, preds, average='macro')}")
 
-
-time_decode = 5093.92
-time_encode = 1699.682
+time_decode = 5420.447
+time_encode = 1699.63
 latencies = []
-latFile = open(f"/home/admin1/netronome_tests/{dirt}/{model}_lat.txt", 'r')
+latFile = open(f"../dtree_tests/{dirt}/{model}_lat{util}.txt", 'r')
 for lat in latFile.readlines():
     if (model == "cpu"):
         latencies.append(float(lat) - time_decode - time_encode)
